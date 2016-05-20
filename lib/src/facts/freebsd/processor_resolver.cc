@@ -1,11 +1,11 @@
-#include <internal/facts/openbsd/processor_resolver.hpp>
+#include <internal/facts/freebsd/processor_resolver.hpp>
 #include <leatherman/logging/logging.hpp>
 #include <sys/types.h>
 #include <sys/sysctl.h>
 
 using namespace std;
 
-namespace facter { namespace facts { namespace openbsd {
+namespace facter { namespace facts { namespace freebsd {
 
     processor_resolver::data processor_resolver::collect_data(collection& facts)
     {
@@ -44,16 +44,7 @@ namespace facter { namespace facts { namespace openbsd {
             }
         }
 
-        // Set the speed
-        len = sizeof(result.speed);
-        mib[1] = HW_CPUSPEED;
-        if (sysctl(mib, 2, &result.speed, &len, nullptr, 0) == -1) {
-            LOG_DEBUG("sysctl hw.cpuspeed failed: %1% (%2%): processor speed is unavailable.", strerror(errno), errno);
-        }
-        // Scale the speed to something resolve() can correctly map
-        result.speed *= 1000 * 1000;
-
         return result;
     }
 
-}}}  // namespace facter::facts::openbsd
+}}}  // namespace facter::facts::freebsd
