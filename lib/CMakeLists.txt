@@ -196,6 +196,7 @@ elseif ("${CMAKE_SYSTEM_NAME}" MATCHES "FreeBSD")
         "src/facts/bsd/networking_resolver.cc"
         "src/facts/bsd/uptime_resolver.cc"
         "src/facts/freebsd/processor_resolver.cc"
+        "src/facts/freebsd/memory_resolver.cc"
         "src/util/bsd/scoped_ifaddrs.cc"
     )
 elseif ("${CMAKE_SYSTEM_NAME}" MATCHES "OpenBSD")
@@ -329,7 +330,7 @@ endif()
 
 set(RUBY_LIB_INSTALL "" CACHE PATH "Specify the location to install facter.rb")
 if(RUBY_LIB_INSTALL)
-    set(RUBY_VENDORDIR ${RUBY_LIB_INSTALL}) 
+    set(RUBY_VENDORDIR ${RUBY_LIB_INSTALL})
 else()
     # Disable actually installing facter.rb if Ruby is not present and RUBY_LIB_INSTALL not specified.
     if (RUBY_FOUND)
