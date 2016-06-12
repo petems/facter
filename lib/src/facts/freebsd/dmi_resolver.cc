@@ -25,10 +25,11 @@ namespace facter { namespace facts { namespace freebsd {
     {
         char buffer[100] = {};
 
-        LOG_DEBUG("localchassis", "DMI request for %s", file);
+        LOG_DEBUG("kenv lookup for %s", file);
         if (kenv(KENV_GET, file, buffer, sizeof(buffer) - 1) == -1) {
-            LOG_DEBUG("localchassis", "cannot get %s", file);
+            LOG_WARNING("kenv lookup failed: %1% (%2%): kernel facts are unavailable.", strerror(errno), errno);
             return "";
+
         }
         return buffer;
     }
