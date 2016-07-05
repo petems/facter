@@ -4,6 +4,7 @@
 #include <internal/facts/glib/load_average_resolver.hpp>
 #include <internal/facts/freebsd/processor_resolver.hpp>
 #include <internal/facts/freebsd/dmi_resolver.hpp>
+#include <internal/facts/freebsd/memory_resolver.hpp>
 #include <internal/facts/posix/identity_resolver.hpp>
 #include <internal/facts/posix/kernel_resolver.hpp>
 #include <internal/facts/posix/ssh_resolver.hpp>
@@ -26,6 +27,7 @@ namespace facter { namespace facts {
         add(make_shared<glib::load_average_resolver>());
         add(make_shared<freebsd::processor_resolver>());
         add(make_shared<freebsd::dmi_resolver>());
+        add(make_shared<freebsd::memory_resolver>());
     }
 
 }}  // namespace facter::facts
